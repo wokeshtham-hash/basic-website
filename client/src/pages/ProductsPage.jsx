@@ -40,18 +40,30 @@ export default function ProductsPage() {
   }, []);
 
   return (
-    <div className="page-shell page-content">
-      <section className="section-heading">
-        <p className="eyebrow">Inventory</p>
-        <h1 className="section-title">Curated products from your backend.</h1>
-        <p className="hero-copy section-copy">
-          This page is rendered through React Router and populated from the Express products API.
-        </p>
-        <div className="status-pill">Data source: {source}</div>
+    <div className="page-shell page-content products-page">
+      <section className="catalog-hero page-frame">
+        <div>
+          <p className="section-kicker">Shop all</p>
+          <h1 className="section-title">Monochrome catalog with a sharper fashion-retail rhythm.</h1>
+          <p className="section-copy">
+            The grid keeps your live backend products, but the presentation now leans into larger
+            imagery, tighter card composition, and cleaner editorial spacing.
+          </p>
+        </div>
+        <div className="catalog-meta">
+          <div>
+            <span>Products</span>
+            <strong>{products.length || 4}</strong>
+          </div>
+          <div>
+            <span>Source</span>
+            <strong>{source}</strong>
+          </div>
+        </div>
       </section>
 
       {status === "loading" && (
-        <section className="product-grid">
+        <section className="product-grid page-frame">
           <article className="card card-muted">
             <h2>Loading products</h2>
             <p>Fetching inventory from the backend.</p>
@@ -60,7 +72,7 @@ export default function ProductsPage() {
       )}
 
       {status === "error" && (
-        <section className="product-grid">
+        <section className="product-grid page-frame">
           <article className="card card-error">
             <h2>Unable to load products</h2>
             <p>{error}</p>
@@ -69,7 +81,7 @@ export default function ProductsPage() {
       )}
 
       {status === "success" && (
-        <section className="product-grid">
+        <section className="product-grid page-frame product-grid-spacious">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

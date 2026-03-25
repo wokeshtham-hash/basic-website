@@ -8,11 +8,14 @@ export default function ProductCard({ product }) {
     <article className="product-card">
       <div className="product-image-wrap">
         <img className="product-image" src={product.image} alt={product.name} />
+        <span className="product-badge">{product.category}</span>
       </div>
       <div className="product-meta">
-        <p className="product-category">{product.category}</p>
         <div className="product-heading-row">
-          <h3>{product.name}</h3>
+          <div>
+            <p className="product-category">Ready to wear</p>
+            <h3>{product.name}</h3>
+          </div>
           <span className="product-price">USD {product.price}</span>
         </div>
         <p className="product-description">{product.description}</p>
@@ -21,7 +24,7 @@ export default function ProductCard({ product }) {
           type="button"
           onClick={() => dispatch(addToCart(product))}
         >
-          Add to cart
+          Add to bag
         </button>
       </div>
     </article>

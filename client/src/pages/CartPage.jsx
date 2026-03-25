@@ -11,29 +11,43 @@ export default function CartPage() {
   const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
-    <div className="page-shell page-content">
-      <section className="section-heading">
-        <p className="eyebrow">Cart</p>
-        <h1 className="section-title">Your selected products.</h1>
-        <p className="hero-copy section-copy">
-          Cart state is shared through Redux Toolkit, so the navbar count and this page stay in sync.
-        </p>
+    <div className="page-shell page-content cart-page">
+      <section className="catalog-hero page-frame">
+        <div>
+          <p className="section-kicker">Shopping bag</p>
+          <h1 className="section-title">Minimal cart styling with stronger retail hierarchy.</h1>
+          <p className="section-copy">
+            Quantity controls, pricing, and shared Redux state remain intact, now with a cleaner
+            monochrome layout that fits the rest of the storefront.
+          </p>
+        </div>
+        <div className="catalog-meta">
+          <div>
+            <span>Items</span>
+            <strong>{items.length}</strong>
+          </div>
+          <div>
+            <span>Subtotal</span>
+            <strong>USD {subtotal}</strong>
+          </div>
+        </div>
       </section>
 
       {items.length === 0 && (
-        <section className="card cart-empty">
-          <h2>Your cart is empty</h2>
-          <p>Add items from the products page to see them here.</p>
+        <section className="card cart-empty page-frame">
+          <h2>Your bag is empty</h2>
+          <p>Add items from the products page to build the cart experience.</p>
         </section>
       )}
 
       {items.length > 0 && (
-        <section className="cart-layout">
+        <section className="cart-layout page-frame">
           <div className="cart-list">
             {items.map((item) => (
               <article className="cart-item" key={item.id}>
                 <img className="cart-item-image" src={item.image} alt={item.name} />
                 <div className="cart-item-copy">
+                  <p className="cart-item-kicker">{item.category}</p>
                   <h2>{item.name}</h2>
                   <p>Unit price: USD {item.price}</p>
                 </div>
@@ -54,10 +68,15 @@ export default function CartPage() {
           </div>
 
           <aside className="cart-summary">
-            <p className="panel-label">Summary</p>
+            <p className="section-kicker">Order summary</p>
             <h2>Subtotal</h2>
             <p className="summary-price">USD {subtotal}</p>
-            <p className="summary-copy">Shipping, tax, and checkout can be added next as separate flows.</p>
+            <p className="summary-copy">
+              Shipping, tax, and checkout can be layered in next without changing the current cart state flow.
+            </p>
+            <button className="button product-button" type="button">
+              Proceed to checkout
+            </button>
           </aside>
         </section>
       )}

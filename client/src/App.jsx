@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import CartPage from "./pages/CartPage";
 import HomePage from "./pages/HomePage";
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <Footer />
     </>
   );
 }
